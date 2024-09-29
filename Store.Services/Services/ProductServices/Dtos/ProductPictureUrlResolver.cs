@@ -20,7 +20,7 @@ namespace Store.Services.Services.ProductServices.Dtos
         {
             if(!string.IsNullOrEmpty(source.PictureUrl))
             {
-                return $"{_configuration["BaseUrl"]}{source.PictureUrl}";
+                return $"{_configuration["BaseUrl"]}/{source.PictureUrl}";
             }
             return null;
         }

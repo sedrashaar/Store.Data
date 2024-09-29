@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Store.Data.Entities;
 using Store.Repository.Interfaces;
+using Store.Repository.Specification.ProductSpecs;
+using Store.Services.Helper;
 using Store.Services.Services.ProductServices;
 using Store.Services.Services.ProductServices.Dtos;
 using System;
@@ -31,19 +33,27 @@ namespace Store.Services.Services.ProductServices
             return mappedBrands;
         }
 
-        public async Task<IReadOnlyList<ProductDetailsDto>> GetAllProductsAsync()
+        public async Task<PaginatedResultDto<ProductDetailsDto>> GetAllProductsAsync(ProductSpecification input)
         {
-            var products = await _unitWork.Repository<ProductEntity, int>().GetAllAsNoTrackingAsync();
+            var specs = new ProductWithSpecification(input);
+
+            var products = await _unitWork.Repository<ProductEntity, int>().GetAllWithSpecificationAsync(specs);
+
+            var countSpecs = new ProductWithCountSpecification(input);
+
+            var count = await _unitWork.Repository<ProductEntity, int>().GetCountSpecificationAsync(countSpecs);
+
             var mappedProducts =  _mapper.Map<IReadOnlyList<ProductDetailsDto>>(products);
-           
-            return mappedProducts;
+          
+            return new PaginatedResultDto<ProductDetailsDto>(input.PageIndex,input.PageSize, count, mappedProducts);
         }
+
 
         public async Task<IReadOnlyList<BrandTypeDetailsDto>> GetAllTypesAsync()
         {
             var types = await _unitWork.Repository<ProductType, int>().GetAllAsNoTrackingAsync();
             var mappedTypes = _mapper.Map<IReadOnlyList<BrandTypeDetailsDto>>(types);
-          
+           
             return mappedTypes;
         }
 
@@ -52,7 +62,9 @@ namespace Store.Services.Services.ProductServices
             if(productId is null )
                 throw new Exception("Id is Null");
 
-            var product = await _unitWork.Repository<ProductEntity, int>().GetByIdAsync(productId.Value);
+            var specs = new ProductWithSpecification(productId);
+
+            var product = await _unitWork.Repository<ProductEntity, int>().GetAllWithSpecificationAsync(specs);
 
 
             if (product is null)
@@ -60,7 +72,7 @@ namespace Store.Services.Services.ProductServices
 
             var mappedProducts = _mapper.Map<ProductDetailsDto>(product);
 
-          
+           
             return mappedProducts;
 
         }
