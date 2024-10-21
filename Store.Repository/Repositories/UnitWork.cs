@@ -25,10 +25,6 @@ namespace Store.Repository.Repositories
 
         public IGenericRepository<TEntity, Tkey> Repository<TEntity, Tkey>() where TEntity : BaseEntity<Tkey>
         {
-            #region Notes
-            //hashtable => by3ml mapping li key,value
-            // hastghdmo 34an yakhzam instance mn el repos. bt3t 34an ymn3 ani a-create new repos. instances kol mara ana btlob feha el data  bt3te
-            #endregion
 
             if(_repositories == null) _repositories = new Hashtable();  
             var entityKey = typeof(TEntity).Name; 

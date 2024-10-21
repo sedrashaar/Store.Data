@@ -12,7 +12,6 @@ namespace Store.Services.Services.ProductServices.Dtos
                 .ForMember(dest => dest.TypeName, options => options.MapFrom(src => src.Type.Name))
                .ForMember(dest => dest.PictureUrl, options => options.MapFrom<ProductPictureUrlResolver>());
 
-
             CreateMap<ProductBrand, BrandTypeDetailsDto>();
             CreateMap<ProductType, BrandTypeDetailsDto>();
 

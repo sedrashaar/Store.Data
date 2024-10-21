@@ -5,11 +5,6 @@ using Store.Repository.Specification.ProductSpecs;
 using Store.Services.Helper;
 using Store.Services.Services.ProductServices;
 using Store.Services.Services.ProductServices.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ProductEntity = Store.Data.Entities.Product;
 
 namespace Store.Services.Services.ProductServices
@@ -71,8 +66,6 @@ namespace Store.Services.Services.ProductServices
                 throw new Exception("Product Not Found");
 
             var mappedProducts = _mapper.Map<ProductDetailsDto>(product);
-
-           
             return mappedProducts;
 
         }

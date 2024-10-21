@@ -3,11 +3,7 @@ using Store.Data.Contexts;
 using Store.Data.Entities;
 using Store.Repository.Interfaces;
 using Store.Repository.Specification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Store.Repository.Repositories
 {

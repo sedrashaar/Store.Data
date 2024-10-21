@@ -14,8 +14,6 @@ namespace Store.Repository.Specification.ProductSpecs
         public int PageIndex { get; set; } = 1;
 
         public const int MaxPageSize = 50;
-
-
         public int _pageSize = 6;
 
         public int PageSize
@@ -30,7 +28,5 @@ namespace Store.Repository.Specification.ProductSpecs
             get => _search;
             set => _search = value?.Trim().ToLower();
         }
-
-
     }
 }

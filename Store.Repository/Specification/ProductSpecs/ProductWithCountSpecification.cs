@@ -15,8 +15,6 @@ namespace Store.Repository.Specification.ProductSpecs
                           (!specs.TypeId.HasValue || product.TypeId == specs.TypeId.Value) &&
                           (string.IsNullOrEmpty(specs.Search) || product.Name.Trim().ToLower().Contains(specs.Search)
          ))
-
-
         {
 
         }

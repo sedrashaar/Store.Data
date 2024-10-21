@@ -18,7 +18,3 @@ namespace Store.Services.Services.ProductServices
 
     }
 }
-#region Notes
-//Specification da zy cls kda 
-//evaluator btevalte the query eli gyali lhd ma tashof di btmatch the criteria ali ana 3yza wla la 
-#endregion
